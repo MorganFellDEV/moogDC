@@ -28,7 +28,7 @@ async def on_message(message):
         return
 
     if message.content == 'n!miku':
-        response = random.choice("https://cloud.moorgaan.dev/resources/miku/"+miku_pics)
+        response = "https://cloud.moorgaan.dev/resources/miku/"+(random.choice(miku_pics))
         await message.channel.send(response)
     elif message.content == 'n!showerror':
         raise discord.DiscordException
