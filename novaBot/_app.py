@@ -12,8 +12,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 
-miku_pics = load_miku_images()
-print (miku_pics)
 
 
 
@@ -28,6 +26,7 @@ async def on_message(message):
         return
 
     if message.content == 'n!miku':
+        miku_pics = load_miku_images()
         response = "https://cloud.moorgaan.dev/resources/miku/"+(random.choice(miku_pics))
         await message.channel.send(response)
     elif message.content == 'n!showerror':
