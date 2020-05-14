@@ -27,10 +27,9 @@ async def on_message(message):
 
     if message.content == 'n!miku':
         miku_pics = load_miku_images()
-        with open("/var/www/html/resources/miku/"+random.choice(miku_pics), "r") as miku_file:
-            response = discord.File(miku_file)
-            await message.channel.send(response)
+        await message.channel.send(file=discord.File("/var/www/html/resources/miku/" + random.choice(miku_pics)))
     elif message.content == 'n!showerror':
+        await message.channel.send("'''"+discord.DiscordException+"'''")
         raise discord.DiscordException
 
 client.run("lol no token for you")
