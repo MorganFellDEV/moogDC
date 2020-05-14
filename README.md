@@ -8,6 +8,27 @@ NovaBot is a general purpose Discord Bot with many capabilities, named after a c
 ### Dependencies
 * [Discord.py](https://github.com/Rapptz/discord.py)
 * [python_dotenv](https://pypi.org/project/python-dotenv/)
+* **OPTIONAL:** [nohup](https://linux.die.net/man/1/nohup)
 
 ### Installation
-Install Discord.py
+Install Discord.py using pip.
+```
+python3 -m pip install discord.py
+```
+Install python_dotenv using pip.
+```
+python3 -m pip install python_dotenv
+```
+Add your Discord Token to the DISCORD_TOKEN environment variable using either .env or your system environment variables.
+```
+EXPORT DISCORD_TOKEN="YOUR DISCORD TOKEN HERE"
+```
+Run the _app.py file in the moogDC/novaBot directory using nohup.
+```
+python3 moogDC/novaBot/_app.py
+```
+Alternatively, the script can be run using [nohup](https://linux.die.net/man/1/nohup) to run in the background.
+```
+nohup python3 moogDC/novaBot/_app.py &
+```
+Output from the script will be directed into the working directory under the filename **nohup.out**.
