@@ -4,7 +4,8 @@ import random
 
 import discord
 from dotenv import load_dotenv
-from load_mikus import load_miku_images
+from load_mikus import random_miku_image
+from give_hug import random_hug_image
 
 load_dotenv()
 
@@ -23,10 +24,29 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == 'n!miku':
-        miku_pics = load_miku_images()
-        await message.channel.send(file=discord.File("/var/www/html/resources/miku/" + random.choice(miku_pics)))
-    elif message.content == 'n!showerror':
+    if message.content.startswith('n!miku'):
+        await message.channel.send(file=discord.File(random_miku_image()))
+
+    elif message.content.startswith('n!hug'):
+
+        hug_string = ""
+
+        for incrementer, value in enumerate(message.mentions):
+
+            if incrementer == len(message.mentions)-1:
+                hug_string += str(message.mentions[incrementer].name)
+                hug_string += "!"
+                break
+            else:
+                hug_string += str(message.mentions[incrementer].name)
+                hug_string += " and "
+
+            incrementer += 1
+
+        await message.channel.send(message.author.name + " hugs " + hug_string)
+        await message.channel.send(file=discord.File(random_hug_image()))
+
+    elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
         raise discord.DiscordException
 
