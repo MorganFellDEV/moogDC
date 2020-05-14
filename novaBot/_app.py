@@ -107,4 +107,4 @@ async def on_message(message):
         raise discord.DiscordException
 
 
-client.run("MjM2NDM0MjM0MjA0NDg3Njgy.XrxMfg.X5m3i1dSvj3Q_Zr6XuVsRPdHN6c")
+client.run(TOKEN)
