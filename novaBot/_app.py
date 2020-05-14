@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from load_mikus import random_miku_image
 from give_hug import random_hug_image
 from give_kiss import random_kiss_image
+from poke import random_poke_image
 
 load_dotenv()
 
@@ -83,7 +84,7 @@ async def on_message(message):
             incrementer += 1
 
         await message.channel.send(message.author.name + " pokes " + poke_string)
-        await message.channel.send(file=discord.File(random_kiss_image()))
+        await message.channel.send(file=discord.File(random_poke_image()))
 
     elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
