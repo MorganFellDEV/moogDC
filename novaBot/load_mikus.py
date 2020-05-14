@@ -1,7 +1,6 @@
 # load_mikus.py
 from os import listdir
 from os.path import isfile, join
-import discord
 import random
 
 

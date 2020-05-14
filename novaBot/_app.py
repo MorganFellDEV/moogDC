@@ -66,6 +66,25 @@ async def on_message(message):
         await message.channel.send(message.author.name + " kisses " + kiss_string)
         await message.channel.send(file=discord.File(random_kiss_image()))
 
+    elif message.content.startswith('n!poke'):
+
+        poke_string = ""
+
+        for incrementer, value in enumerate(message.mentions):
+
+            if incrementer == len(message.mentions) - 1:
+                poke_string += str(message.mentions[incrementer].name)
+                poke_string += "!"
+                break
+            else:
+                poke_string += str(message.mentions[incrementer].name)
+                poke_string += " and "
+
+            incrementer += 1
+
+        await message.channel.send(message.author.name + " pokes " + poke_string)
+        await message.channel.send(file=discord.File(random_kiss_image()))
+
     elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
         raise discord.DiscordException
