@@ -13,8 +13,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
 
-
-
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
@@ -29,7 +27,8 @@ async def on_message(message):
         miku_pics = load_miku_images()
         await message.channel.send(file=discord.File("/var/www/html/resources/miku/" + random.choice(miku_pics)))
     elif message.content == 'n!showerror':
-        await message.channel.send("```"+str(discord.DiscordException)+"```")
+        await message.channel.send("```" + str(discord.DiscordException) + "```")
         raise discord.DiscordException
+
 
 client.run(TOKEN)
