@@ -27,8 +27,9 @@ async def on_message(message):
 
     if message.content == 'n!miku':
         miku_pics = load_miku_images()
-        response = "https://cloud.moorgaan.dev/resources/miku/"+(random.choice(miku_pics))
-        await message.channel.send(response)
+        with open("/var/www/html/resources/miku/"+random.choice(miku_pics), "r") as miku_file:
+            response = discord.File(miku_file)
+            await message.channel.send(response)
     elif message.content == 'n!showerror':
         raise discord.DiscordException
 
