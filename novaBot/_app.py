@@ -64,7 +64,7 @@ async def on_message(message):
             incrementer += 1
 
         await message.channel.send(message.author.name + " kisses " + kiss_string)
-        await message.channel.send(file=discord.File(random_hug_image()))
+        await message.channel.send(file=discord.File(random_kiss_image()))
 
     elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
