@@ -1,8 +1,11 @@
 # bot.py
 import os
 import random
+import re
 
 import discord
+import discord.emoji
+from discord.ext.commands import Bot
 from dotenv import load_dotenv
 from load_mikus import random_miku_image
 from give_hug import random_hug_image
@@ -14,11 +17,18 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
+bot = Bot(command_prefix="n!")
 
 
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
+
+
+@bot.command()
+async def geturl(ctx, emoji: discord.Emoji):
+    await ctx.send(emoji.name)
+
 
 
 @client.event
@@ -86,9 +96,15 @@ async def on_message(message):
         await message.channel.send(message.author.name + " pokes " + poke_string)
         await message.channel.send(file=discord.File(random_poke_image()))
 
+    elif message.content.startswith('n!jumbo'):
+        # TODO: Figure out how to grab the URL of the emote.
+        # TODO: Get URL of emote then chop it up to get the ID.
+
+        await message.channel.send(emoji)
+
     elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
         raise discord.DiscordException
 
 
-client.run(TOKEN)
+client.run("MjM2NDM0MjM0MjA0NDg3Njgy.XrxMfg.X5m3i1dSvj3Q_Zr6XuVsRPdHN6c")
