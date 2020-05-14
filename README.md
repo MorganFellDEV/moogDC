@@ -23,7 +23,7 @@ Add your Discord Token to the DISCORD_TOKEN environment variable using either .e
 ```
 EXPORT DISCORD_TOKEN="YOUR DISCORD TOKEN HERE"
 ```
-Run the _app.py file in the moogDC/novaBot directory using nohup.
+Run the _app.py file in the moogDC/novaBot directory.
 ```
 python3 moogDC/novaBot/_app.py
 ```
