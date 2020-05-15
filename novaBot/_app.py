@@ -26,7 +26,7 @@ async def on_ready():
 
 @bot.command()
 async def jumbo(ctx, emoji: discord.PartialEmoji):
-    await get_emote.get_emote_image(ctx,str(emoji.id))
+    await get_emote.get_emote_image(ctx,emoji)
     '''if emoji.animated:
         parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".gif"
         request_file = requests.get(parsed_url)
