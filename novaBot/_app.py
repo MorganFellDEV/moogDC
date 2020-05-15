@@ -64,4 +64,4 @@ async def boop(ctx):
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
 
-bot.run("MjM2NDM0MjM0MjA0NDg3Njgy.Xr5n_A.MK0YTuTQDtpbAWBzuEUWsQrM6tc")
+bot.run(TOKEN)
