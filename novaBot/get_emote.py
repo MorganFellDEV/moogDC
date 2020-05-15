@@ -1,6 +1,7 @@
 import requests
 import os
 import discord
+import glob
 
 
 def get_emote_image(ctx, emoji: discord.PartialEmoji):
@@ -18,4 +19,5 @@ def get_emote_image(ctx, emoji: discord.PartialEmoji):
 
 
 def cleanup_emote():
-    os.remove("/var/www/html/resources/emotes_grabbed/temp_emote.*")
+    for files_found in glob.glob("/var/www/html/resources/emotes_grabbed/"):
+        os.remove(files_found)
