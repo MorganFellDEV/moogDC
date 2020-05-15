@@ -27,7 +27,7 @@ async def on_ready():
 @bot.command()
 async def jumbo(ctx, emoji: discord.PartialEmoji):
     await ctx.send(file=get_emote.get_emote_image(ctx, emoji))
-    await get_emote.cleanup_emote(get_emote.get_emote_image(ctx, emoji))
+    await get_emote.cleanup_emote(emoji)
 
 
 @bot.command()
