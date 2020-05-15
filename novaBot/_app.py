@@ -39,8 +39,26 @@ async def jumbo(ctx, emoji: discord.PartialEmoji):
 
 @bot.command()
 async def miku(ctx):
-    await ctx.send(random_miku_image())
+    await ctx.send(file=discord.file(random_miku_image()))
 
+@bot.command()
+async def hug(ctx,message):
+    hug_string = ""
+
+    for incrementer, value in enumerate(message.mentions):
+
+        if incrementer == len(message.mentions) - 1:
+            hug_string += str(message.mentions[incrementer].name)
+            hug_string += "!"
+            break
+        else:
+            hug_string += str(message.mentions[incrementer].name)
+            hug_string += " and "
+
+        incrementer += 1
+
+    await ctx.send(message.author.name + " hugs " + hug_string)
+    await ctx.send(file=discord.File(random_hug_image()))
 
 '''
 @client.event
