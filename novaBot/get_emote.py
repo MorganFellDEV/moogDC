@@ -19,5 +19,5 @@ def get_emote_image(ctx, emoji: discord.PartialEmoji):
 
 
 def cleanup_emote():
-    for files_found in glob.glob("/var/www/html/resources/emotes_grabbed/"):
+    for files_found in glob.glob("/var/www/html/resources/emotes_grabbed/*"):
         os.remove(files_found)
