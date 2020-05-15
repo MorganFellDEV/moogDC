@@ -17,8 +17,8 @@ def get_emote_image(ctx, emoji: discord.PartialEmoji):
         return discord.File("/var/www/html/resources/emotes_grabbed/temp_emote.png"), False
 
 
-def cleanup_emote(is_animated):
-    if is_animated:
+def cleanup_emote(ctx, emoji: discord.PartialEmoji):
+    if emoji.animated:
         os.remove("/var/www/html/resources/emotes_grabbed/temp_emote.gif")
     else:
         os.remove("/var/www/html/resources/html/emotes_grabbed/temp_emote.png")
