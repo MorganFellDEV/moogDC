@@ -11,7 +11,7 @@ def get_emote_image(ctx, emoji: discord.PartialEmoji):
         parsed_url = "https://cdn.discordapp.com/emojis/" + str(emoji.id) + ".gif"
         request_file = requests.get(parsed_url)
         open(resources_location + "/emotes_grabbed/temp_emote.gif", 'wb').write(request_file.content)
-        return discord.File("/var/www/html/resources/emotes_grabbed/temp_emote.gif")
+        return discord.File(resources_location + "/emotes_grabbed/temp_emote.gif")
 
     else:
         parsed_url = "https://cdn.discordapp.com/emojis/" + str(emoji.id) + ".png"
