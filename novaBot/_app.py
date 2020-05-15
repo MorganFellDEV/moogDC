@@ -27,7 +27,7 @@ async def on_ready():
 @bot.command()
 async def jumbo(ctx, emoji: discord.PartialEmoji):
     await ctx.send(file=get_emote.get_emote_image(ctx, emoji))
-    await get_emote.cleanup_emote(emoji)
+    await get_emote.cleanup_emote()
 
 
 @bot.command()
@@ -58,5 +58,5 @@ async def boop(ctx):
     await ctx.send(give_poke.give_poke(ctx, True))
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
-
+# TODO: Remove token before pushing changes!
 bot.run(TOKEN)
