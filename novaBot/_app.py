@@ -39,7 +39,7 @@ async def jumbo(ctx, emoji: discord.PartialEmoji):
 
 @bot.command()
 async def miku(ctx):
-    await ctx.send(file=discord.file(random_miku_image()))
+    await ctx.send(file=discord.File(random_miku_image()))
 
 @bot.command()
 async def hug(ctx,message):
