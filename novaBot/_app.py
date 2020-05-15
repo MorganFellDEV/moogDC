@@ -5,6 +5,7 @@ import re
 
 import discord
 import discord.emoji
+from discord.ext import commands
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
 from load_mikus import random_miku_image
@@ -16,30 +17,34 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
+#client = discord.Client()
 bot = Bot(command_prefix="n!")
 
-
+'''
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
-
+'''
 
 @bot.command()
-async def geturl(ctx, emoji: discord.Emoji):
-    await ctx.send(emoji.name)
+async def jumbo(ctx,emoji: discord.PartialEmoji):
+    emoji_url = str(emoji.id)
+    parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".png"
+    await ctx.send(parsed_url)
 
-
-
+@bot.command()
+async def miku(ctx):
+    await ctx.send(random_miku_image())
+'''
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('n!miku'):
-        await message.channel.send(file=discord.File(random_miku_image()))
+    #if message.content.startswith('n!miku'):
+        #await message.channel.send(file=discord.File(random_miku_image()))
 
-    elif message.content.startswith('n!hug'):
+    if message.content.startswith('n!hug'):
 
         hug_string = ""
 
@@ -100,11 +105,11 @@ async def on_message(message):
         # TODO: Figure out how to grab the URL of the emote.
         # TODO: Get URL of emote then chop it up to get the ID.
 
-        await message.channel.send(emoji)
+        #await message.channel.send(emoji)
 
     elif message.content.startswith('n!showerror'):
         await message.channel.send("```" + str(discord.DiscordException) + "```")
         raise discord.DiscordException
 
-
-client.run(TOKEN)
+'''
+bot.run("MjM2NDM0MjM0MjA0NDg3Njgy.Xr5hHg.YBeKp7-Hy7aUoKOqufcwhVm7ppI")
