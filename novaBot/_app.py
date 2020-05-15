@@ -9,6 +9,7 @@ from load_mikus import random_miku_image
 import give_hug
 import give_kiss
 import give_poke
+import get_emote
 
 load_dotenv()
 
@@ -25,8 +26,8 @@ async def on_ready():
 
 @bot.command()
 async def jumbo(ctx, emoji: discord.PartialEmoji):
-    emoji_url = str(emoji.id)
-    if emoji.animated:
+    get_emote.get_emote_image(str(emoji.id))
+    '''if emoji.animated:
         parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".gif"
         request_file = requests.get(parsed_url)
         open("/var/www/html/resources/emotes_grabbed/temp_emote.gif", 'wb').write(request_file.content)
@@ -39,7 +40,7 @@ async def jumbo(ctx, emoji: discord.PartialEmoji):
         await ctx.send(file=discord.File("/var/www/html/resources/emotes_grabbed/temp_emote.png"))
         os.remove("/var/www/html/resources/emotes_grabbed/temp_emote.png")
 
-
+    '''
 @bot.command()
 async def miku(ctx):
     await ctx.send(file=discord.File(random_miku_image()))
