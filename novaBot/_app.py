@@ -17,7 +17,7 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-#client = discord.Client()
+# client = discord.Client()
 bot = Bot(command_prefix="n!")
 
 '''
@@ -26,15 +26,22 @@ async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
 '''
 
+
 @bot.command()
-async def jumbo(ctx,emoji: discord.PartialEmoji):
+async def jumbo(ctx, emoji: discord.PartialEmoji):
     emoji_url = str(emoji.id)
-    parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".png"
+    if emoji.animated:
+        parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".gif"
+    else:
+        parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".png"
     await ctx.send(parsed_url)
+
 
 @bot.command()
 async def miku(ctx):
     await ctx.send(random_miku_image())
+
+
 '''
 @client.event
 async def on_message(message):
