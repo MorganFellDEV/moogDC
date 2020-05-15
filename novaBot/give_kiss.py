@@ -1,12 +1,14 @@
 from os import listdir
 from os.path import isfile, join
 import random
+import os
 
+resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_kiss_image():
-    onlyfiles = [f for f in listdir("/var/www/html/resources/kiss/") if
-                 isfile(join("/var/www/html/resources/kiss/", f))]
-    file = str(("/var/www/html/resources/kiss/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(resources_location + "/kiss/") if
+                 isfile(join(resources_location + "/kiss/", f))]
+    file = str((resources_location + "/kiss/" + random.choice(onlyfiles)))
     return file
 
 

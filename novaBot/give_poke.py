@@ -1,12 +1,15 @@
 from os import listdir
 from os.path import isfile, join
 import random
+import os
+
+resources_location = os.getenv('NOVABOT_RESOURCES')
 
 
 def random_poke_image():
-    onlyfiles = [f for f in listdir("/var/www/html/resources/poke/") if
-                 isfile(join("/var/www/html/resources/poke/", f))]
-    file = str(("/var/www/html/resources/poke/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(resources_location + "/poke/") if
+                 isfile(join(resources_location + "/poke/", f))]
+    file = str((resources_location + "/poke/" + random.choice(onlyfiles)))
     return file
 
 

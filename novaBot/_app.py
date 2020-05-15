@@ -16,6 +16,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 # client = discord.Client()
+# TODO: Remove nd! when out of 'dev mode'.
 bot = Bot(command_prefix="n!")
 
 
@@ -58,5 +59,4 @@ async def boop(ctx):
     await ctx.send(give_poke.give_poke(ctx, True))
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
-# TODO: Remove token before pushing changes!
 bot.run(TOKEN)

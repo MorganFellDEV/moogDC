@@ -2,11 +2,13 @@
 from os import listdir
 from os.path import isfile, join
 import random
+import os
 
+resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_miku_image():
-    onlyfiles = [f for f in listdir("/var/www/html/resources/miku/") if isfile(join("/var/www/html/resources/miku/", f))]
-    file = str(("/var/www/html/resources/miku/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(resources_location + "/miku/") if isfile(join(resources_location + "/miku/", f))]
+    file = str((resources_location + "/miku/" + random.choice(onlyfiles)))
     return file
 
 

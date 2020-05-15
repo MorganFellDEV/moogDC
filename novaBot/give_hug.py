@@ -1,11 +1,13 @@
 from os import listdir
 from os.path import isfile, join
 import random
+import os
 
+resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_hug_image():
-    onlyfiles = [f for f in listdir("/var/www/html/resources/hug/") if isfile(join("/var/www/html/resources/hug/", f))]
-    file = str(("/var/www/html/resources/hug/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(resources_location + "/hug/") if isfile(join(resources_location + "/hug/", f))]
+    file = str((resources_location + "/hug/" + random.choice(onlyfiles)))
     return file
 
 def give_hug(ctx):
