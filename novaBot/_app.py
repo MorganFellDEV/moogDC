@@ -1,5 +1,6 @@
 # bot.py
 import os
+import requests
 import discord
 import discord.emoji
 from discord.ext.commands import Bot
@@ -29,7 +30,9 @@ async def jumbo(ctx, emoji: discord.PartialEmoji):
         parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".gif"
     else:
         parsed_url = "https://cdn.discordapp.com/emojis/" + emoji_url + ".png"
-    await ctx.send(parsed_url)
+    request_file = requests.get(parsed_url)
+    open("/var/www/html/resources/emotes_grabbed/temp_emote" + request_file, 'wb').write(request_file.content)
+    await ctx.send(file=discord.File("/var/www/html/resources/emotes_grabbed/temp_emote"))
 
 
 @bot.command()
@@ -61,4 +64,4 @@ async def boop(ctx):
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
 
-bot.run(TOKEN)
+bot.run("MjM2NDM0MjM0MjA0NDg3Njgy.Xr5n_A.MK0YTuTQDtpbAWBzuEUWsQrM6tc")
