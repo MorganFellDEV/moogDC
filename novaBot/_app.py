@@ -112,4 +112,4 @@ async def on_message(message):
         raise discord.DiscordException
 
 '''
-bot.run("MjM2NDM0MjM0MjA0NDg3Njgy.Xr5hHg.YBeKp7-Hy7aUoKOqufcwhVm7ppI")
+bot.run(TOKEN)
