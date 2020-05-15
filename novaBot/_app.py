@@ -42,22 +42,22 @@ async def miku(ctx):
     await ctx.send(file=discord.File(random_miku_image()))
 
 @bot.command()
-async def hug(ctx,message):
+async def hug(ctx):
     hug_string = ""
 
-    for incrementer, value in enumerate(message.mentions):
+    for incrementer, value in enumerate(ctx.message.mentions):
 
-        if incrementer == len(message.mentions) - 1:
-            hug_string += str(message.mentions[incrementer].name)
+        if incrementer == len(ctx.message.mentions) - 1:
+            hug_string += str(ctx.message.mentions[incrementer].name)
             hug_string += "!"
             break
         else:
-            hug_string += str(message.mentions[incrementer].name)
+            hug_string += str(ctx.message.mentions[incrementer].name)
             hug_string += " and "
 
         incrementer += 1
 
-    await ctx.send(message.author.name + " hugs " + hug_string)
+    await ctx.send(ctx.message.author.name + " hugs " + hug_string)
     await ctx.send(file=discord.File(random_hug_image()))
 
 '''
