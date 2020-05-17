@@ -25,7 +25,7 @@ resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="nd!")
+bot = Bot(command_prefix="n!")
 fileStore = FileStore()
 
 
