@@ -15,6 +15,7 @@ import give_licks
 import give_food
 import give_cuddles
 import give_tickles
+import check_kermit
 
 load_dotenv()
 
@@ -104,7 +105,7 @@ async def luna(ctx):
 @bot.command(description="Secret!")
 async def kermit(ctx, command_user: discord.User):
     if command_user.id == 187715144556609538 or command_user.id == 109069934541144064:
-        await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
+        await ctx.send(file=discord.File(check_kermit.random_kermit_image()))
     else:
         await ctx.send("Nice try.")
 
