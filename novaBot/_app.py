@@ -11,6 +11,8 @@ import give_kiss
 import give_poke
 import get_emote
 import give_pats
+import give_licks
+import give_food
 
 load_dotenv()
 
@@ -18,7 +20,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="nd!")
+bot = Bot(command_prefix="n!")
 
 
 @bot.event
@@ -66,6 +68,17 @@ async def pat(ctx):
     await ctx.send(give_pats.give_pat(ctx))
     await ctx.send(file=discord.File(give_pats.random_pat_image()))
 
+
+@bot.command()
+async def lick(ctx):
+    await ctx.send(give_licks.give_lick(ctx))
+    await ctx.send(file=discord.File(give_licks.random_lick_image()))
+
+
+@bot.command()
+async def feed(ctx):
+    await ctx.send(give_food.give_food(ctx))
+    await ctx.send(file=discord.File(give_food.random_feed_image()))
 
 
 bot.run(TOKEN)
