@@ -3,21 +3,19 @@ import os
 import discord
 import glob
 
+from FileStore import FileStore
+
 resources_location = os.getenv('NOVABOT_RESOURCES')
 
 
-def get_emote_image(ctx, emoji: discord.PartialEmoji):
-    if emoji.animated:
-        parsed_url = "https://cdn.discordapp.com/emojis/" + str(emoji.id) + ".gif"
-        request_file = requests.get(parsed_url)
-        open(str(resources_location) + "/emotes_grabbed/temp_emote.gif", 'wb').write(request_file.content)
-        return discord.File(str(resources_location) + "/emotes_grabbed/temp_emote.gif")
-
-    else:
-        parsed_url = "https://cdn.discordapp.com/emojis/" + str(emoji.id) + ".png"
-        request_file = requests.get(parsed_url)
-        open(str(resources_location) + "/emotes_grabbed/temp_emote.png", 'wb').write(request_file.content)
-        return discord.File(str(resources_location) + "/emotes_grabbed/temp_emote.png")
+def get_emote_image(ctx, emoji: discord.PartialEmoji, files_store: FileStore):
+    extension = ".gif" if emoji.animated else ".png"
+    if emoji.id not in files_store.links:
+        request_file = requests.get("https://cdn.discordapp.com/emojis/%s%s" % (emoji.id, extension))
+        image_location = "%s/emotes_grabbed/%s%s" % (resources_location, emoji.id, extension)
+        open(image_location, 'wb').write(request_file.content)
+        files_store.add_link(emoji.id, image_location)
+    return discord.File(files_store.get_link(emoji.id))
 
 
 def cleanup_emote():

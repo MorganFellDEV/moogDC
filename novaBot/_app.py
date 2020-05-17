@@ -16,6 +16,7 @@ import give_food
 import give_cuddles
 import give_tickles
 import check_kermit
+from FileStore import FileStore
 
 load_dotenv()
 
@@ -24,7 +25,8 @@ resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="n!")
+bot = Bot(command_prefix="nd!")
+fileStore = FileStore()
 
 
 @bot.event
@@ -34,8 +36,7 @@ async def on_ready():
 
 @bot.command(description="Posts the image of the emote sent to it.")
 async def jumbo(ctx, emoji: discord.PartialEmoji):
-    await ctx.send(file=get_emote.get_emote_image(ctx, emoji))
-    get_emote.cleanup_emote()
+    await ctx.send(file=get_emote.get_emote_image(ctx, emoji, fileStore))
 
 
 @bot.command(description="A homage to Nova, posts a random Miku image.")
@@ -57,8 +58,7 @@ async def kiss(ctx):
 
 @bot.command(description="Annoy your friends!")
 async def poke(ctx):
-    await ctx.send(give_poke.give_poke(ctx, False))
-    await ctx.send(file=discord.File(give_poke.random_poke_image()))
+    await ctx.send(give_poke.give_poke(ctx, False), file=discord.File(give_poke.random_poke_image()))
 
 
 @bot.command(description="Boop!")
@@ -104,7 +104,7 @@ async def luna(ctx):
 
 @bot.command(description="Secret!")
 async def kermit(ctx):
-    if ctx.message.author.id == 187715144556609538 or ctx.message.author.id == 109069934541144064:
+    if ctx.message.author.id == 187715144556609538 or ctx.message.author.id == 109069934541144064 or ctx.message.author.id == 123133337387663360:
         await ctx.send(file=discord.File(check_kermit.random_kermit_image()))
     else:
         await ctx.send("Nice try.")
