@@ -24,7 +24,7 @@ resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="nd!")
+bot = Bot(command_prefix="n!")
 
 
 @bot.event
@@ -103,8 +103,8 @@ async def luna(ctx):
 
 
 @bot.command(description="Secret!")
-async def kermit(ctx, command_user: discord.User):
-    if command_user.id == 187715144556609538 or command_user.id == 109069934541144064:
+async def kermit(ctx):
+    if ctx.message.author.id == 187715144556609538 or ctx.message.author.id == 109069934541144064:
         await ctx.send(file=discord.File(check_kermit.random_kermit_image()))
     else:
         await ctx.send("Nice try.")
