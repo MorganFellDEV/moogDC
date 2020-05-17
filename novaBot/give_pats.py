@@ -6,9 +6,9 @@ import os
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_pat_image():
-    onlyfiles = [f for f in listdir(resources_location + "/pat/") if
-                 isfile(join(resources_location + "/pat/", f))]
-    file = str((resources_location + "/pat/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(str(resources_location) + "/pat/") if
+                 isfile(join(str(resources_location) + "/pat/", f))]
+    file = str((str(resources_location) + "/pat/" + random.choice(onlyfiles)))
     return file
 
 

@@ -18,7 +18,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="n!")
+bot = Bot(command_prefix="nd!")
 
 
 @bot.event

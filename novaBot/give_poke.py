@@ -7,8 +7,8 @@ resources_location = os.getenv('NOVABOT_RESOURCES')
 
 
 def random_poke_image():
-    onlyfiles = [f for f in listdir(resources_location + "/poke/") if
-                 isfile(join(resources_location + "/poke/", f))]
+    onlyfiles = [f for f in listdir(str(resources_location) + "/poke/") if
+                 isfile(join(str(resources_location) + "/poke/", f))]
     file = str((resources_location + "/poke/" + random.choice(onlyfiles)))
     return file
 

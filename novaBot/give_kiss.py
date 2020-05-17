@@ -6,9 +6,9 @@ import os
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_kiss_image():
-    onlyfiles = [f for f in listdir(resources_location + "/kiss/") if
-                 isfile(join(resources_location + "/kiss/", f))]
-    file = str((resources_location + "/kiss/" + random.choice(onlyfiles)))
+    onlyfiles = [f for f in listdir(str(resources_location) + "/kiss/") if
+                 isfile(join(str(resources_location) + "/kiss/", f))]
+    file = str((str(resources_location) + "/kiss/" + random.choice(onlyfiles)))
     return file
 
 

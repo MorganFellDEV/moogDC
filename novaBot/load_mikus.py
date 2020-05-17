@@ -7,7 +7,7 @@ import os
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
 def random_miku_image():
-    onlyfiles = [f for f in listdir(resources_location + "/miku/") if isfile(join(resources_location + "/miku/", f))]
+    onlyfiles = [f for f in listdir(str(resources_location) + "/miku/") if isfile(join(str(resources_location) + "/miku/", f))]
     file = str((resources_location + "/miku/" + random.choice(onlyfiles)))
     return file
 
