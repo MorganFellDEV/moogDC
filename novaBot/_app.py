@@ -19,6 +19,7 @@ import give_tickles
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
+resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
@@ -93,6 +94,11 @@ async def cuddle(ctx):
 async def tickle(ctx):
     await ctx.send(give_tickles.give_tickles(ctx))
     await ctx.send(file=discord.File(give_tickles.random_tickle_image()))
+
+
+@bot.command()
+async def luna(ctx):
+    await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
 
 
 bot.run(TOKEN)
