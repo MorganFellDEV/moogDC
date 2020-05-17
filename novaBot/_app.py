@@ -23,7 +23,7 @@ resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="n!")
+bot = Bot(command_prefix="nd!")
 
 
 @bot.event
@@ -99,6 +99,14 @@ async def tickle(ctx):
 @bot.command(description="What's that smell?")
 async def luna(ctx):
     await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
+
+
+@bot.command(description="Secret!")
+async def kermit(ctx, command_user: discord.User):
+    if command_user.id == 187715144556609538 or command_user.id == 109069934541144064:
+        await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
+    else:
+        await ctx.send("Nice try.")
 
 
 bot.run(TOKEN)
