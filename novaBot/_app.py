@@ -10,6 +10,7 @@ import give_hug
 import give_kiss
 import give_poke
 import get_emote
+import give_pats
 
 load_dotenv()
 
@@ -58,5 +59,13 @@ async def poke(ctx):
 async def boop(ctx):
     await ctx.send(give_poke.give_poke(ctx, True))
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
+
+
+@bot.command()
+async def pat(ctx):
+    await ctx.send(give_pats.give_pat(ctx))
+    await ctx.send(file=discord.File(give_pats.random_pat_image()))
+
+
 
 bot.run(TOKEN)
