@@ -13,6 +13,8 @@ import get_emote
 import give_pats
 import give_licks
 import give_food
+import give_cuddles
+import give_tickles
 
 load_dotenv()
 
@@ -79,6 +81,18 @@ async def lick(ctx):
 async def feed(ctx):
     await ctx.send(give_food.give_food(ctx))
     await ctx.send(file=discord.File(give_food.random_feed_image()))
+
+
+@bot.command()
+async def cuddle(ctx):
+    await ctx.send(give_cuddles.give_cuddles(ctx))
+    await ctx.send(file=discord.File(give_cuddles.random_cuddle_image()))
+
+
+@bot.command()
+async def tickle(ctx):
+    await ctx.send(give_tickles.give_tickles(ctx))
+    await ctx.send(file=discord.File(give_tickles.random_tickle_image()))
 
 
 bot.run(TOKEN)
