@@ -31,84 +31,72 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
 
-@bot.command()
-@bot.description("Posts the image of the emote sent to it")
+@bot.command(description="Posts the image of the emote sent to it.")
 async def jumbo(ctx, emoji: discord.PartialEmoji):
     await ctx.send(file=get_emote.get_emote_image(ctx, emoji))
     get_emote.cleanup_emote()
 
 
-@bot.command()
-@bot.description("An homage to Nova, posts a random Miku image.")
+@bot.command(description="An homage to Nova, posts a random Miku image.")
 async def miku(ctx):
     await ctx.send(file=discord.File(random_miku_image()))
 
 
-@bot.command()
-@bot.description("HUGS!!!!!")
+@bot.command(description="HUGS!!!!!")
 async def hug(ctx):
     await ctx.send(give_hug.give_hug(ctx))
     await ctx.send(file=discord.File(give_hug.random_hug_image()))
 
 
-@bot.command()
-@bot.description("Smooches!")
+@bot.command(description="SMOOCHES!!")
 async def kiss(ctx):
     await ctx.send(give_kiss.give_kiss(ctx))
     await ctx.send(file=discord.File(give_kiss.random_kiss_image()))
 
 
-@bot.command()
-@bot.description("Annoy your friends!")
+@bot.command(description="Annoy your friends!")
 async def poke(ctx):
     await ctx.send(give_poke.give_poke(ctx, False))
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
 
-@bot.command()
-@bot.description("Boop!")
+@bot.command(description="Boop!")
 async def boop(ctx):
     await ctx.send(give_poke.give_poke(ctx, True))
     await ctx.send(file=discord.File(give_poke.random_poke_image()))
 
 
-@bot.command()
-@bot.description("PATTING INTENSIFIES")
+@bot.command(description="PATTING INTENSIFIES!")
 async def pat(ctx):
     await ctx.send(give_pats.give_pat(ctx))
     await ctx.send(file=discord.File(give_pats.random_pat_image()))
 
 
-@bot.command()
-@bot.description("Lick?")
+@bot.command(description="LICC LICC LICC!!!")
 async def lick(ctx):
     await ctx.send(give_licks.give_lick(ctx))
     await ctx.send(file=discord.File(give_licks.random_lick_image()))
 
 
-@bot.command()
-@bot.description("Say AAAAAAA")
+@bot.command(description="Say AAAAAA!!")
 async def feed(ctx):
     await ctx.send(give_food.give_food(ctx))
     await ctx.send(file=discord.File(give_food.random_feed_image()))
 
 
-@bot.command()
-@bot.description("Maximum comfy mode")
+@bot.command(description="Maximum comfy mode!")
 async def cuddle(ctx):
     await ctx.send(give_cuddles.give_cuddles(ctx))
     await ctx.send(file=discord.File(give_cuddles.random_cuddle_image()))
 
 
-@bot.command()
-@bot.description("Tickle your enemies!")
+@bot.command(description="Tickle your enemies!")
 async def tickle(ctx):
     await ctx.send(give_tickles.give_tickles(ctx))
     await ctx.send(file=discord.File(give_tickles.random_tickle_image()))
 
 
-@bot.command()
-@bot.description("What's that smell?")
+@bot.command(description="What's that smell?")
 async def luna(ctx):
     await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
 
