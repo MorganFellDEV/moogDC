@@ -38,7 +38,7 @@ async def jumbo(ctx, emoji: discord.PartialEmoji):
     get_emote.cleanup_emote()
 
 
-@bot.command(description="An homage to Nova, posts a random Miku image.")
+@bot.command(description="A homage to Nova, posts a random Miku image.")
 async def miku(ctx):
     await ctx.send(file=discord.File(random_miku_image()))
 
