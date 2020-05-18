@@ -25,7 +25,7 @@ resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # client = discord.Client()
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="n!")
+bot = Bot(command_prefix="nd!")
 fileStore = FileStore()
 
 
@@ -46,14 +46,14 @@ async def miku(ctx):
 
 @bot.command(description="HUGS!!!!!")
 async def hug(ctx):
-    await ctx.send(give_hug.give_hug(ctx))
-    await ctx.send(file=discord.File(give_hug.random_hug_image()))
+    await ctx.send(give_hug.give_hug(ctx), file=discord.File(give_hug.random_hug_image()))
+
 
 
 @bot.command(description="SMOOCHES!!")
 async def kiss(ctx):
-    await ctx.send(give_kiss.give_kiss(ctx))
-    await ctx.send(file=discord.File(give_kiss.random_kiss_image()))
+    await ctx.send(give_kiss.give_kiss(ctx), file=discord.File(give_kiss.random_kiss_image()))
+
 
 
 @bot.command(description="Annoy your friends!")
@@ -63,38 +63,37 @@ async def poke(ctx):
 
 @bot.command(description="Boop!")
 async def boop(ctx):
-    await ctx.send(give_poke.give_poke(ctx, True))
-    await ctx.send(file=discord.File(give_poke.random_poke_image()))
+    await ctx.send(give_poke.give_poke(ctx, True), file=discord.File(give_poke.random_poke_image()))
 
 
 @bot.command(description="PATTING INTENSIFIES!")
 async def pat(ctx):
-    await ctx.send(give_pats.give_pat(ctx))
-    await ctx.send(file=discord.File(give_pats.random_pat_image()))
+    await ctx.send(give_pats.give_pat(ctx), file=discord.File(give_pats.random_pat_image()))
+
 
 
 @bot.command(description="LICC LICC LICC!!!")
 async def lick(ctx):
-    await ctx.send(give_licks.give_lick(ctx))
-    await ctx.send(file=discord.File(give_licks.random_lick_image()))
+    await ctx.send(give_licks.give_lick(ctx), file=discord.File(give_licks.random_lick_image()))
+
 
 
 @bot.command(description="Say AAAAAA!!")
 async def feed(ctx):
-    await ctx.send(give_food.give_food(ctx))
-    await ctx.send(file=discord.File(give_food.random_feed_image()))
+    await ctx.send(give_food.give_food(ctx), file=discord.File(give_food.random_feed_image()))
+
 
 
 @bot.command(description="Maximum comfy mode!")
 async def cuddle(ctx):
-    await ctx.send(give_cuddles.give_cuddles(ctx))
-    await ctx.send(file=discord.File(give_cuddles.random_cuddle_image()))
+    await ctx.send(give_cuddles.give_cuddles(ctx), file=discord.File(give_cuddles.random_cuddle_image()))
+
 
 
 @bot.command(description="Tickle your enemies!")
 async def tickle(ctx):
-    await ctx.send(give_tickles.give_tickles(ctx))
-    await ctx.send(file=discord.File(give_tickles.random_tickle_image()))
+    await ctx.send(give_tickles.give_tickles(ctx), file=discord.File(give_tickles.random_tickle_image()))
+
 
 
 @bot.command(description="What's that smell?")
