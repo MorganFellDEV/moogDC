@@ -55,7 +55,7 @@ fileStore = FileStore()
 
 @tasks.loop(seconds=30.0)
 async def get_user_count(ctx):
-    print(ctx.guild.member_count)
+    prom_shelly_user_count.set(ctx.guild.member_count)
 
 
 @bot.event
