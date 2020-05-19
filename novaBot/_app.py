@@ -24,7 +24,7 @@ from FileStore import FileStore
 load_dotenv()
 
 # Setting up Prometheus
-prometheus_client.start_http_server(8000)
+prometheus_client.start_http_server(10001)
 prom_global_served_requests = prometheus_client.Gauge("all_served_requests", "All successfully served requests.")
 prom_global_failed_requests = prometheus_client.Gauge("all_failed_requests", "All failed NovaBot requests.")
 
