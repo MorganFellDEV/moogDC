@@ -19,6 +19,7 @@ import give_food
 import give_cuddles
 import give_tickles
 import check_kermit
+import give_bonk
 from FileStore import FileStore
 
 load_dotenv()
@@ -42,6 +43,7 @@ prom_command_feed_requests = prometheus_client.Gauge("all_served_feed_requests",
 prom_command_cuddle_requests = prometheus_client.Gauge("all_served_cuddle_requests", "All served n!cuddle requests.")
 prom_command_tickle_requests = prometheus_client.Gauge("all_served_tickle_requests", "All served n!tickle requests.")
 prom_command_luna_requests = prometheus_client.Gauge("all_served_luna_requests", "All served n!luna requests.")
+prom_command_bonk_requests = prometheus_client.Gauge("all_served_bonk_requests", "All served n!bonk requests.")
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 resources_location = os.getenv("NOVABOT_RESOURCES")
@@ -186,6 +188,17 @@ async def tickle(ctx):
     try:
         await ctx.send(give_tickles.give_tickles(ctx), file=discord.File(give_tickles.random_tickle_image()))
         prom_command_tickle_requests.inc()
+        prom_global_served_requests.inc()
+    except:
+        print(sys.exc_info())
+        prom_global_failed_requests.inc()
+
+
+@bot.command(description="Bonk!")
+async def bonk(ctx):
+    try:
+        await ctx.send(give_bonk.give_bonk(ctx), file=discord.File(give_bonk.random_bonk_image()))
+        prom_command_bonk_requests.inc()
         prom_global_served_requests.inc()
     except:
         print(sys.exc_info())
