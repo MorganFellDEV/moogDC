@@ -44,15 +44,15 @@ prom_command_cuddle_requests = prometheus_client.Gauge("all_served_cuddle_reques
 prom_command_tickle_requests = prometheus_client.Gauge("all_served_tickle_requests", "All served n!tickle requests.")
 prom_command_luna_requests = prometheus_client.Gauge("all_served_luna_requests", "All served n!luna requests.")
 prom_command_bonk_requests = prometheus_client.Gauge("all_served_bonk_requests", "All served n!bonk requests.")
+prom_command_serverinfo_requests = prometheus_client.Gauge("all_served_serverinfo_requests",
+                                                           "All served n!serverinfo requests.")
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
-
 # TODO: Remove nd! when out of 'dev mode'.
 bot = Bot(command_prefix="nd!")
 fileStore = FileStore()
-
 
 
 @tasks.loop(seconds=30.0)
@@ -63,6 +63,7 @@ async def get_user_count(ctx):
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
+
 
 @bot.command()
 async def botinit(ctx):
@@ -210,6 +211,17 @@ async def luna(ctx):
     try:
         await ctx.send(file=discord.File(str(resources_location) + "/misc/luna_stinky.mp4"))
         prom_command_luna_requests.inc()
+        prom_global_served_requests.inc()
+    except:
+        print(sys.exc_info())
+        prom_global_failed_requests.inc()
+
+
+@bot.command(description="Learn about the server!")
+async def serverinfo(ctx):
+    try:
+        await ctx.send(file=discord.File(str(resources_location) + "/misc/rule_britannia.mp4"))
+        prom_command_serverinfo_requests.inc()
         prom_global_served_requests.inc()
     except:
         print(sys.exc_info())
