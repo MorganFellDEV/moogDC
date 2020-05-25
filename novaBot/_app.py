@@ -20,6 +20,7 @@ import give_cuddles
 import give_tickles
 import check_kermit
 import give_bonk
+import give_stonks
 from FileStore import FileStore
 
 load_dotenv()
@@ -44,6 +45,7 @@ prom_command_cuddle_requests = prometheus_client.Gauge("all_served_cuddle_reques
 prom_command_tickle_requests = prometheus_client.Gauge("all_served_tickle_requests", "All served n!tickle requests.")
 prom_command_luna_requests = prometheus_client.Gauge("all_served_luna_requests", "All served n!luna requests.")
 prom_command_bonk_requests = prometheus_client.Gauge("all_served_bonk_requests", "All served n!bonk requests.")
+prom_command_stonks_requests = prometheus_client.Gauge("all_served_stonks_requests", "All served n!stonks requests.")
 prom_command_serverinfo_requests = prometheus_client.Gauge("all_served_serverinfo_requests",
                                                            "All served n!serverinfo requests.")
 
@@ -204,6 +206,17 @@ async def bonk(ctx):
     except:
         print(sys.exc_info())
         prom_global_failed_requests.inc()
+
+@bot.command(description="Stonks!")
+async def stonks(ctx):
+    try:
+        await ctx.send(give_stonks.give_stonks(ctx), file=discord.File(give_bonk.random_bonk_image()))
+        prom_command_stonks_requests.inc()
+        prom_global_served_requests.inc()
+    except:
+        print(sys.exc_info())
+        prom_global_failed_requests.inc()
+
 
 
 @bot.command(description="What's that smell?")
