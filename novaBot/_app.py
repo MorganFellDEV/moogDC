@@ -211,7 +211,7 @@ async def bonk(ctx):
 @bot.command(description="Stonks!")
 async def stonks(ctx):
     try:
-        await ctx.send(give_stonks.give_stonks(ctx), file=discord.File(give_bonk.random_bonk_image()))
+        await ctx.send(give_stonks.give_stonks(ctx), file=discord.File(give_stonks.random_stonks_image()))
         prom_command_stonks_requests.inc()
         prom_global_served_requests.inc()
     except:
