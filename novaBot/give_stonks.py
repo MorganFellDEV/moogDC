@@ -6,7 +6,7 @@ import os
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
 
-def random_bonk_image():
+def random_stonks_image():
     onlyfiles = [f for f in listdir(str(resources_location) + "/stonks/") if
                  isfile(join(str(resources_location) + "/stonks/", f))]
     file = str((str(resources_location) + "/stonks/" + random.choice(onlyfiles)))
@@ -38,3 +38,5 @@ def give_stonks(ctx):
                 stonks_string += " and " + str(ctx.message.mentions[incrementer].name)
 
     return ctx.message.author.name + " stonks " + stonks_string + "!"
+
+

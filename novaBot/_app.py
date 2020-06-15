@@ -21,6 +21,7 @@ import give_tickles
 import check_kermit
 import give_bonk
 import give_stonks
+import give_basement
 from FileStore import FileStore
 
 load_dotenv()
@@ -50,11 +51,14 @@ prom_command_serverinfo_requests = prometheus_client.Gauge("all_served_serverinf
                                                            "All served n!serverinfo requests.")
 prom_command_shelly_requests = prometheus_client.Gauge("all_served_shelly_requests","All served n!shelly requests.")
 
+prom_command_basement_requests = prometheus_client.Gauge("all_served_basement_requests","All serverd n!basement requests.")
+
+
 TOKEN = os.getenv('DISCORD_TOKEN')
 resources_location = os.getenv("NOVABOT_RESOURCES")
 
 # TODO: Remove nd! when out of 'dev mode'.
-bot = Bot(command_prefix="nd!")
+bot = Bot(command_prefix="n!")
 fileStore = FileStore()
 
 
@@ -264,5 +268,20 @@ async def kermit(ctx):
         print(sys.exc_info())
         prom_global_failed_requests.inc()
 
+@bot.command(description="Send someone to the basement!")
+async def basement(ctx):
+    try:
+        #single person
+        if len(ctx.message.mentions) == 0:
+            await ctx.send(give_basement.send_to_basement(ctx), file=discord.File(give_basement.random_basement_image(True)))
+        #multiple people
+        else:
+            await ctx.send(give_basement.send_to_basement(ctx), file=discord.File(give_basement.random_basement_image(False)))
+
+        prom_command_basement_requests.inc()
+        prom_global_served_requests.inc()
+    except:
+        print(sys.exc_info())
+        prom_global_failed_requests.inc()
 
 bot.run(TOKEN)
